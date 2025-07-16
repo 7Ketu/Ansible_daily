@@ -1,0 +1,177 @@
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ ll
+]total 0
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 01/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 02/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 03/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 04/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 05/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 06/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 07/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 08/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 09/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 10/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 11/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 12/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 13/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 14/
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 22:28 15/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 16/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 challenge/
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 template/
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd template/
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 ansible.cfg
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat ansible.cfg 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi ansible.cfg 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat /home/ansible/.ssh/known_hosts
+|1|PwtftB/57oM0Wa2h6kzmyFXbzAw=|xi+sGprGOBroi4tyHW1X49/YQgM= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|81FFa5PkzWAo+/UNtxzGoVTlLms=|f6VTLIjUfwnYb1iiIFYgc/53ZHo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|2ZM050aQ2zLS/ovs52O4wyiPQGs=|5dIbogRJb68+Wzg8ElsX8YdNISo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|Bc4RvnmDb9krJXFNgKF0Sry0jn8=|+iqW2IZ5+jDfv9ypQYSJhSLg7zY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|jk4a+DNDapw6w5RHnNnweFIAJG0=|NMXA9qZPqkLl1qrkPjjVM05p9rg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|mu97oDKc0NNar8yhSUBY6TZp3GU=|dI8+TvBhafgcSPop50elgBTbyow= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE04zvPoRq/oS35kai7NbjeIFC3RgCRQzW/MmZ12jA2CvZQOlNvjPG6SYLevY6RfdWK8PTsDHzuZhWivTwUcTgU=
+|1|k+57gBXM5b1yD7YVAZWLpNXdAkc=|EHc/g9gsqld5vt435wWtg0ibwTY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+|1|zJZNALcTzzK9EQdNqeQRyHQ3vzs=|4TLYBfIo0PHRQ513BdhEmNMj9ew= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+|1|bYI+xqheCqy1CC8Xt6NarS+mdmg=|439ga+d/D1UQuqjEeAe0ExL87l0= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+|1|ytrViuL4x8InXEZCrfaKA96FXeI=|hCFJNXn1n9hmYzZpKnBn+AQXLDE= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+|1|PoxNBtk9RHPe5c7mv/n00WtnJ/Q=|9mvAM8vCn401JzMB1ck2NBUfon8= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+|1|1dlecxzWf09Jt9VJiI+YMTzf3TQ=|LUUGkYYG52ZoKWsQzMg/xKfCdW4= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAIllTL6bzJMZp11kPM/Fo9Ufr07yim/KQDPkNz0yhElrd+kx5+tpOVp7AIyXxYhfA0pkuxVdlzCxuVDm/Ls3fk=
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi ansible.cfg 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi ansible.cfg 
+
+[1]+  Stopped                 vi ansible.cfg
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat ansible.cfg 
+[Defaults]
+
+Inventory: Hosts
+host_key_checking=False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 22:58 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-r--r-- 1 ansible ansible 4096 Jul  5 22:58 .ansible.cfg.swp
+-rw-rw-r-- 1 ansible ansible   53 Jul  5 22:58 ansible.cfg
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ls
+ansible.cfg  hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi ansible.cfg 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ rm ansible.cfg 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 23:00 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-r--r-- 1 ansible ansible 4096 Jul  5 22:58 .ansible.cfg.swp
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ rm .ansible.cfg.swp 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 23:00 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi ansible.cfg
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 23:01 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-rw-r-- 1 ansible ansible   55 Jul  5 23:01 ansible.cfg
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi hosts 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 23:03 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-rw-r-- 1 ansible ansible   55 Jul  5 23:01 ansible.cfg
+-rw-rw-r-- 1 ansible ansible    0 Jun 29 13:19 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi hosts 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 23:12 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rw-rw-r-- 1 ansible ansible   55 Jul  5 23:01 ansible.cfg
+-rw-rw-r-- 1 ansible ansible  254 Jul  5 23:12 hosts
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat hosts 
+[control]
+ubuntu-c ansible_connection = local
+
+[centos]
+centos1 ansible_port: 2222
+centos2
+centos3
+
+[centos:vars]
+        ansible_user=root
+
+[ubuntu]
+        ubuntu[1:3]
+
+[ubuntu:vars]
+        ansible_become=true
+        ansible_become_pass=password
+
+[linux:children]
+ubuntu
+centos
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ansible linux -m ping -o
+[WARNING]:  * Failed to parse /home/ansible/diveintoansible/Ansible Architecture
+and Design/Inventories/template/hosts with yaml plugin: We were unable to read
+either as JSON nor YAML, these are the errors we got from each: JSON: Expecting
+value: line 1 column 2 (char 1)  Syntax Error while loading YAML.   did not find
+expected <document start>  The error appears to be in
+'/home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts': line 2, column 1, but may be elsewhere in the
+file depending on the exact syntax problem.  The offending line appears to be:
+[control] ubuntu-c ansible_connection = local ^ here
+[WARNING]:  * Failed to parse /home/ansible/diveintoansible/Ansible Architecture
+and Design/Inventories/template/hosts with ini plugin:
+/home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts:2: Expected key=value host variable assignment,
+got: ansible_connection
+[WARNING]: Unable to parse /home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts as an inventory source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the
+implicit localhost does not match 'all'
+[WARNING]: Could not match supplied host pattern, ignoring: linux
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi hosts 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ cat ansible.cfg 
+[defaults]
+inventory = hosts
+host_key_checking = False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ansible all -m ping -o
+[WARNING]:  * Failed to parse /home/ansible/diveintoansible/Ansible Architecture
+and Design/Inventories/template/hosts with yaml plugin: We were unable to read
+either as JSON nor YAML, these are the errors we got from each: JSON: Expecting
+value: line 1 column 2 (char 1)  Syntax Error while loading YAML.   did not find
+expected <document start>  The error appears to be in
+'/home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts': line 2, column 1, but may be elsewhere in the
+file depending on the exact syntax problem.  The offending line appears to be:
+[control] ubuntu-c ansible_connection=local ^ here
+[WARNING]:  * Failed to parse /home/ansible/diveintoansible/Ansible Architecture
+and Design/Inventories/template/hosts with ini plugin:
+/home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts:5: Expected key=value host variable assignment,
+got: ansible_port:
+[WARNING]: Unable to parse /home/ansible/diveintoansible/Ansible Architecture and
+Design/Inventories/template/hosts as an inventory source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the
+implicit localhost does not match 'all'
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ^C
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ vi hosts 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ ansible all -m ping -o
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/template$ 

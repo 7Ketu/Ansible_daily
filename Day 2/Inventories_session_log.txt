@@ -1,0 +1,1117 @@
+ubuntu2 ansible_become=true ansible_become_pass=password
+ubuntu3 ansible_become=true ansible_become_pass=password
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/06$ 
+ansible all -m ping -o
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/06$ 
+cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 
+cd /07
+-bash: cd: too many arguments
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd cd 07
+-bash: cd: too many arguments
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 07
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ cat hosts 
+[centos]
+centos1:2222 ansible_user=root
+centos2 ansible_user=root
+centos3 ansible_user=root
+
+[ubuntu]
+ubuntu1 ansible_become=true ansible_become_pass=password
+ubuntu2 ansible_become=true ansible_become_pass=password
+ubuntu3 ansible_become=true ansible_become_pass=password
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ ansible all -m ping -o
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ ssh root@centos1 -p 22
+ssh: connect to host centos1 port 22: Connection refused
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ ssh root@centos1 -p 2222
+Last login: Sat Jul  5 21:38:40 2025 from 172.18.0.8
+[root@centos1 ~]# utils/update_sshd_ports.sh 2222 22
+-bash: utils/update_sshd_ports.sh: No such file or directory
+[root@centos1 ~]# /utils/update_sshd_ports.sh 2222 22
+🔒 Backup of sshd_config created at /etc/ssh/sshd_config.bak_20250705213943
+🧹 Existing Port entries removed.
+🔧 New Port entries added for: 2222 22
+✅ SSHD has been successfully restarted and is now listening on ports: 2222 22
+[root@centos1 ~]# exit
+logout
+Connection to centos1 closed.
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ ansible all -m ping -o
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/07$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 
+08
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/08$ 
+cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_user=root ansible_port=2222
+centos2 ansible_user=root
+centos3 ansible_user=root
+
+[ubuntu]
+ubuntu1 ansible_become=true ansible_become_pass=password
+ubuntu2 ansible_become=true ansible_become_pass=password
+ubuntu3 ansible_become=true ansible_become_pass=password
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/08$ ansible all -m ping -o
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/08$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd /09
+-bash: cd: /09: No such file or directory
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 09
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/09$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   55 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  199 Jun 29 13:19 hosts*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/09$ cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_user=root ansible_port=2222
+centos[2:3] ansible_user=root
+
+[ubuntu]
+ubuntu[1:3] ansible_become=true ansible_become_pass=password
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/09$ ansible all --list-host
+  hosts (7):
+    ubuntu-c
+    centos1
+    centos2
+    centos3
+    ubuntu1
+    ubuntu2
+    ubuntu3
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/09$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 10
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/10$ cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/10$ ^C
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/10$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 11
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/11$ cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/11$ ^C
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/11$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 12
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/12$ cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+
+[all:vars]
+ansible_port=1234
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/12$ ansible linux -m ping -o
+centos2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos2 port 1234: Connection refused
+centos3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos3 port 1234: Connection refused
+ubuntu1 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu1 port 1234: Connection refused
+ubuntu2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu2 port 1234: Connection refused
+ubuntu3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu3 port 1234: Connection refused
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/12$ ansible all -m ping -o
+centos2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos2 port 1234: Connection refused
+centos3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos3 port 1234: Connection refused
+ubuntu1 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu1 port 1234: Connection refused
+ubuntu2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu2 port 1234: Connection refused
+ubuntu3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu3 port 1234: Connection refused
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/12$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 13
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/13$ 
+cat hosts 
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+
+[linux:vars]
+ansible_port=1234
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/13$ ansible all -m ping -o
+centos2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos2 port 1234: Connection refused
+centos3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos3 port 1234: Connection refused
+ubuntu1 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu1 port 1234: Connection refused
+ubuntu2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu2 port 1234: Connection refused
+ubuntu3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu3 port 1234: Connection refused
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/13$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 14
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ cat hosts
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ 
+ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   60 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ cat hosts.yaml
+---
+control:
+  hosts:
+    ubuntu-c:
+      ansible_connection: local
+centos:
+  hosts:
+    centos1:
+      ansible_port: 2222
+    centos2:
+    centos3:
+  vars:
+    ansible_user: root
+ubuntu:
+  hosts:
+    ubuntu1:
+    ubuntu2:
+    ubuntu3:
+  vars:
+    ansible_become: true
+    ansible_become_pass: password
+linux:
+  children:
+    centos:
+    ubuntu:
+...
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ cat hosts
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/14$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 15
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   60 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rwxrwxr-x 1 ansible ansible  749 Jun 29 13:19 hosts.json*
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat ansible.cfg 
+[defaults]
+inventory = hosts.json
+host_key_checking = False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat hosts
+hosts       hosts.json  hosts.yaml  
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat hosts.json 
+{
+    "control": {
+        "hosts": {
+            "ubuntu-c": {
+                "ansible_connection": "local"
+            }
+        }
+    },
+    "centos": {
+        "hosts": {
+            "centos1": {
+                "ansible_port": 2222
+            },
+            "centos2": null,
+            "centos3": null
+        },
+        "vars": {
+            "ansible_user": "root"
+        }
+    },
+    "ubuntu": {
+        "hosts": {
+            "ubuntu1": null,
+            "ubuntu2": null,
+            "ubuntu3": null
+        },
+        "vars": {
+            "ansible_become": true,
+            "ansible_become_pass": "password"
+        }
+    },
+    "linux": {
+        "children": {
+            "centos": null,
+            "ubuntu": null
+        }
+    }
+}ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$rm hosts.json 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ ll
+total 0
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 22:24 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   60 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat ansible
+cat: ansible: No such file or directory
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat ansible.cfg 
+[defaults]
+inventory = hosts.json
+host_key_checking = False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ python3 -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin, Loader=yaml.Full
+Loader), sys.stdout, indent=4)' < hosts.yaml > hosts.json
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jul  5 22:28 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   60 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rw-rw-r-- 1 ansible ansible  749 Jul  5 22:28 hosts.json
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cat hosts.json 
+{
+    "control": {
+        "hosts": {
+            "ubuntu-c": {
+                "ansible_connection": "local"
+            }
+        }
+    },
+    "centos": {
+        "hosts": {
+            "centos1": {
+                "ansible_port": 2222
+            },
+            "centos2": null,
+            "centos3": null
+        },
+        "vars": {
+            "ansible_user": "root"
+        }
+    },
+    "ubuntu": {
+        "hosts": {
+            "ubuntu1": null,
+            "ubuntu2": null,
+            "ubuntu3": null
+        },
+        "vars": {
+            "ansible_become": true,
+            "ansible_become_pass": "password"
+        }
+    },
+    "linux": {
+        "children": {
+            "centos": null,
+            "ubuntu": null
+        }
+    }
+}ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ansible all -m ping -o
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/15$ cd ..
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories$ cd 16
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   55 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rwxrwxr-x 1 ansible ansible  760 Jun 29 13:19 hosts.json*
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ cat ansible.cfg 
+[defaults]
+inventory = hosts
+host_key_checking = False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible all -i hosts.yaml --list-host
+  hosts (7):
+    ubuntu-c
+    centos1
+    centos2
+    centos3
+    ubuntu1
+    ubuntu2
+    ubuntu3
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible all -i hosts.json --list-host
+  hosts (7):
+    ubuntu-c
+    centos3
+    centos2
+    centos1
+    ubuntu1
+    ubuntu2
+    ubuntu3
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible all -i hosts --list-host
+  hosts (7):
+    ubuntu-c
+    centos1
+    centos2
+    centos3
+    ubuntu1
+    ubuntu2
+    ubuntu3
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible linux -i hosts --list-host
+  hosts (6):
+    centos1
+    centos2
+    centos3
+    ubuntu1
+    ubuntu2
+    ubuntu3
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible --help 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
+               [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY]
+               [--list-hosts] [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o]
+               [-t TREE] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+               [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS]
+               [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [-C]
+               [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+               [-M MODULE_PATH] [--playbook-dir BASEDIR]
+               [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+options:
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute
+                        anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a
+                        substitute playbook directory. This sets the relative
+                        path for many features including roles/ group_vars/ etc.
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive
+                        integer.
+  --vault-id VAULT_IDS  the vault identity to use. This argument may be specified
+                        multiple times.
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location,
+                        configured module search path, module location,
+                        executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of
+                        the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the
+                        differences in those files; works great with --check
+  -J, --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default={{ ANSIBLE_HOME ~
+                        "/plugins/modules:/usr/share/ansible/plugins/modules"
+                        }}). This argument may be specified multiple times.
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a
+                        'opt1=val1 opt2=val2' or a json string: -a '{"opt1":
+                        "val1", "opt2": "val2"}'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if
+                        filename prepend with @. This argument may be specified
+                        multiple times.
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list.
+                        --inventory-file is deprecated. This argument may be
+                        specified multiple times.
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding
+                        multiple -v will increase the verbosity, the builtin
+                        plugins currently evaluate up to -vvvvvv. A reasonable
+                        level to start is -vvv, connection debugging might
+                        require -vvvv. This argument may be specified multiple
+                        times.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use
+                        `ansible-doc -t become -l` to list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password
+                        prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f,
+                        -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g.
+                        ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default
+                        depends on connection)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=ssh)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible --help | more
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
+               [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE]
+               [-i INVENTORY] [--list-hosts] [-l SUBSET] [-P POLL_INTERVAL]
+               [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT]
+               [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS]
+               [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [-C]
+               [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+               [-M MODULE_PATH] [--playbook-dir BASEDIR]
+               [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+options:
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_F
+ILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_
+PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute
+                        anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a
+                        substitute playbook directory. This sets the relative
+                        path for many features including roles/ group_vars/
+                        etc.
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive
+                        integer.
+  --vault-id VAULT_IDS  the vault identity to use. This argument may be
+                        specified multiple times.
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILE
+S
+                        vault password file
+  --version             show program's version number, config file location,
+                        configured module search path, module location,
+                        executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds
+                        (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some
+                        of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the
+                        differences in those files; works great with --check
+  -J, --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default={{ ANSIBLE_HOME ~
+                        "/plugins/modules:/usr/share/ansible/plugins/modules"
+                        }}). This argument may be specified multiple times.
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a
+                        'opt1=val1 opt2=val2' or a json string: -a '{"opt1":
+                        "val1", "opt2": "val2"}'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if
+                        filename prepend with @. This argument may be
+                        specified multiple times.
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use
+                        (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host
+                        list. --inventory-file is deprecated. This argument
+                        may be specified multiple times.
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding
+                        multiple -v will increase the verbosity, the builtin
+                        plugins currently evaluate up to -vvvvvv. A reasonable
+                        level to start is -vvv, connection debugging might
+                        require -vvvv. This argument may be specified multiple
+                        times.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use
+                        `ansible-doc -t become -l` to list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password
+                        prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f,
+                        -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g.
+                        ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default
+                        depends on connection)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=ssh)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible all -m ping -e 'ansible=22' -o
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible all -m ping -e 'ansible_port=22' -o
+ubuntu-c | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ll
+total 4
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ./
+drwxrwxr-x 1 ansible ansible 4096 Jun 29 13:19 ../
+-rwxrwxr-x 1 ansible ansible   55 Jun 29 13:19 ansible.cfg*
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts*
+-rwxrwxr-x 1 ansible ansible  760 Jun 29 13:19 hosts.json*
+-rwxrwxr-x 1 ansible ansible  350 Jun 29 13:19 hosts.yaml*
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+cat ansible.cfg 
+[defaults]
+inventory = hosts
+host_key_checking = False
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ cat hosts
+[control]
+ubuntu-c ansible_connection=local
+
+[centos]
+centos1 ansible_port=2222
+centos[2:3]
+
+[centos:vars]
+ansible_user=root
+
+[ubuntu]
+ubuntu[1:3]
+
+[ubuntu:vars]
+ansible_become=true
+ansible_become_pass=password
+
+[linux:children]
+centos
+ubuntu
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible linux -m ping -e 'ansible_port=22' -o
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ssh root@centos1 -p 22
+Last login: Sat Jul  5 22:41:45 2025 from 172.18.0.8
+[root@centos1 ~]# /utils/update_sshd_ports.sh 2222
+🔒 Backup of sshd_config created at /etc/ssh/sshd_config.bak_20250705224302
+🧹 Existing Port entries removed.
+🔧 New Port entries added for: 2222
+✅ SSHD has been successfully restarted and is now listening on ports: 2222
+[root@centos1 ~]# exit
+logout
+Connection to centos1 closed.
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+ansible linux -m ping -e 'ansible_ports' -o
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible linux -m ping -e 'ansible_port=22' -o
+centos1 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos1 port 22: Connection refused
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ ansible linux -m ping -e 'ansible_port=2222' -o
+centos2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos2 port 2222: Connection refused
+centos3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host centos3 port 2222: Connection refused
+ubuntu1 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu1 port 2222: Connection refused
+ubuntu2 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu2 port 2222: Connection refused
+ubuntu3 | UNREACHABLE!: Failed to connect to the host via ssh: ssh: connect to host ubuntu3 port 2222: Connection refused
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"ping": "pong"}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ 
+
+
+
+
+
+
+
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Inventories/16$ history
+    1  ll
+    2  ls -a
+    3  ssh ubuntu1
+    4  ls -a
+    5  cd .ssh
+    6  ls
+    7  cat known_hosts 
+    8  ssh-keygen -h -f ubuntu1
+    9  ssh-keygen -H -F ubuntu1
+   10  ping ubuntu1
+   11  ssh-keygen -H -F ubuntu1
+   12  ssh-keygen -H -F 172.18.0.3
+   13  ssh-keygen
+   14  cat /.ssh/id_rsa.pub
+   15  cd
+   16  ll
+   17  cat /.ssh/id_rsa.pub
+   18  cat .ssh/id_rsa.pub
+   19  cat .ssh/id_rsa
+   20  ssh-copy-id ansible@ubuntu1
+   21  ssh ubuntu1
+   22  sudo apt update
+   23  sudo apt update sshpass
+   24  sudo update sshpass
+   25  sudo apt install sshpass
+   26  for user ansible root
+   27  echo password>password.txt
+   28  ll
+   29  cat password.txt 
+   30  for user in ansible root; do   for instance 1 2 3
+   31  for user in ansible root; do   for instance in 1 2 3
+   32  for user in ansible root; do   for instance in 1 2 3;   do 
+   33  for user in ansible root; do   for os in ubuntu centos;   do      for instance in 1 2 3;     do        sshpass -f password.txt ssh-copy-id -o StrictHostKeyChecking=no ${user}@{os}${instance};       done;    done; done
+   34  for user in ansible root; do   for os in ubuntu centos;   do      for instance in 1 2 3;     do        sshpass -f password.txt ssh-copy-id -o StrictHostKeyChecking=no ${user}@${os}${instance};       done;    done; done
+   35  ansible -i ubuntu1,ubuntu2,ubuntu3,centos1,centos2,centos3 all -m ping
+   36  git clone https://github.com/spurin/diveintoansible.git
+   37  cd
+   38  ls
+   39  cd diveintoansible/
+   40  ll
+   41  ls
+   42  cd
+   43  pwd
+   44  ls /etc/ansble
+   45  ls /etc/ansible
+   46  ls /etc
+   47  ansible --versions
+   48  ansible --version
+   49  sudo su
+   50  sudo -
+   51  su -
+   52  ansible version
+   53  ansible --version
+   54  cd ~
+   55  pwd
+   56  touch .ansible.cfg
+   57  ls
+   58  ls -a
+   59  ansible --version
+   60  mkdir testdir
+   61  cd testdir/
+   62  ansible --verison
+   63  ansible --version
+   64  touch ansible.cfg
+   65  ansible --version
+   66  cd ..
+   67  ansible --version
+   68  touch test_ansible.cfg
+   69  ll
+   70  export ANSIBLE_CONFIG=/home/ansible/test_ansible.cfg
+   71  ansible --version
+   72  rm test_ansible.cfg 
+   73  rm rd test
+   74  rm rf test
+   75  ll
+   76  rm .ansible.cfg
+   77  rm rf testdir/
+   78  rmdir testdir/
+   79  sudo rmdir testdir/
+   80  rm -rf testdir/
+   81  ll
+   82  ansible --version
+   83  unset ANSIBLE_CONFIG
+   84  rm /etc/ansible/ansible.cfg
+   85  ansible --version
+   86  sudo rm /etc/ansible/ansible.cfg
+   87  ansible --version
+   88  sudo rmdir /etc/ansible
+   89  ls /etc
+   90  cd
+   91  ll
+   92  cd diveintoansible/
+   93  ll
+   94  cd 'Ansible Architecture and Design'/
+   95  ll
+   96  cd Inventories/
+   97  ll
+   98  cd 01
+   99  ll
+  100  cat ansible.cfg 
+  101  cat hosts 
+  102  ping centos1
+  103  rm -rf /home/ansible/.ssh/known_hosts
+  104  ping centos1
+  105  ansible -i all -m ping
+  106  ansible all -m ping
+  107  ANSIBLE_HOST_KEY_CHECKING=False
+  108  ansible all -m ping
+  109  ANSIBLE_HOST_KEY_CHECKING=False ansible all -m ping
+  110  cd /02
+  111  cd /Inventories/02
+  112  cd ..
+  113  cd 02
+  114  ll
+  115  cat_hosts
+  116  cat hosts 
+  117  cat ansible.cfg 
+  118  ansible all -m ping
+  119  ansible --version
+  120  cd ..
+  121  cd 03
+  122  cat hosts 
+  123  ansible all -m ping
+  124  ansible '*' -m ping
+  125  ansible centos -m ping
+  126  ansible ubuntu -m ping
+  127  ansible all -m ping -o
+  128  ansible centos --list--hosts
+  129  ansible centos --list-hosts
+  130  ansible ubutu --list-hosts
+  131  ansible ubuntu --list-hosts
+  132  ansible --list-hosts
+  133  ansible all --list-hosts
+  134  cd ..
+  135  cd 04
+  136  cat hosts 
+  137  ansible all -m ping
+  138  ansible all -m ping -o
+  139  id
+  140  ansible all -m command -a 'id' -o
+  141  cd ..
+  142  cd  05
+  143  ll
+  144  cat hosts 
+  145  ansible all -m ping
+  146  ansibel all -a 'id' -o 
+  147  ansible all -a 'id' -o
+  148  ansible all -m command 'id' -o
+  149  ansible all -m command -a 'id' -o
+  150  ansible all -m ping -o
+  151  ssh root@centos1 -p 22
+  152  ansible all -m ping -o
+  153  cd /06
+  154  cd ..
+  155  cd 06
+  156  ll
+  157  cat hosts 
+  158  ansible all -m ping -o
+  159  cd ..
+  160  cd cd /07
+  161  cd cd 07
+  162  cd 07
+  163  cat hosts 
+  164  ansible all -m ping -o
+  165  ssh root@centos1 -p 22
+  166  ssh root@centos1 -p 2222
+  167  ansible all -m ping -o
+  168  cd ..
+  169  cd 08
+  170  cat hosts 
+  171  ansible all -m ping -o
+  172  cd ..
+  173  cd /09
+  174  cd 09
+  175  ll
+  176  cat hosts 
+  177  ansible all --list-host
+  178  cd ..
+  179  cd 10
+  180  cat hosts 
+  181  cd ..
+  182  cd 11
+  183  cat hosts 
+  184  cd ..
+  185  cd 12
+  186  cat hosts 
+  187  ansible linux -m ping -o
+  188  ansible all -m ping -o
+  189  cd ..
+  190  cd 13
+  191  cat hosts 
+  192  ansible all -m ping -o
+  193  cd ..
+  194  cd 14
+  195  cat hosts
+  196  ll
+  197  cat hosts.yaml
+  198  cat hosts
+  199  cd ..
+  200  cd 15
+  201  ll
+  202  cat ansible.cfg 
+  203  cat hosts.json 
+  204  rm hosts.json 
+  205  ll
+  206  cat ansible
+  207  cat ansible.cfg 
+  208  python3 -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin, Loader=yaml.FullLoader), sys.stdout, indent=4)' < hosts.yaml > hosts.json
+  209  ll
+  210  cat hosts.json 
+  211  ansible all -m ping -o
+  212  cd ..
+  213  cd 16
+  214  ll
+  215  cat ansible.cfg 
+  216  ansible all -i hosts.yaml --list-host
+  217  ansible all -i hosts.json --list-host
+  218  ansible all -i hosts --list-host
+  219  ansible linux -i hosts --list-host
+  220  ansible --help 
+  221  ansible --help | more
+  222  ansible all -m ping -e 'ansible=22' -o
+  223  ansible all -m ping -e 'ansible_port=22' -o
+  224  ll
+  225  cat ansible.cfg 
+  226  cat hosts
+  227  ansible linux -m ping -e 'ansible_port=22' -o
+  228  ssh root@centos1 -p 22
+  229  ansible linux -m ping -e 'ansible_ports' -o
+  230  ansible linux -m ping -e 'ansible_port=22' -o
+  231  ansible linux -m ping -e 'ansible_port=2222' -o
+  232  history
