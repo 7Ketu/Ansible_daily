@@ -1,0 +1,895 @@
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m setup | more
+ubuntu-c | SUCCESS => {
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "172.18.0.4"
+        ],
+        "ansible_all_ipv6_addresses": [],
+        "ansible_apparmor": {
+            "status": "disabled"
+        },
+        "ansible_architecture": "x86_64",
+        "ansible_bios_date": "NA",
+        "ansible_bios_vendor": "NA",
+        "ansible_bios_version": "NA",
+        "ansible_board_asset_tag": "NA",
+        "ansible_board_name": "NA",
+        "ansible_board_serial": "NA",
+        "ansible_board_vendor": "NA",
+        "ansible_board_version": "NA",
+        "ansible_chassis_asset_tag": "NA",
+        "ansible_chassis_serial": "NA",
+        "ansible_chassis_vendor": "NA",
+        "ansible_chassis_version": "NA",
+        "ansible_cmdline": {
+            "WSL_ENABLE_CRASH_DUMP": "1",
+            "WSL_ROOT_INIT": "1",
+            "console": "hvc0",
+            "debug": true,
+            "hv_utils.timesync_implicit": "1",
+            "initrd": "\\initrd.img",
+            "nr_cpus": "8",
+            "panic": "-1",
+            "pty.legacy_count": "0"
+        },
+        "ansible_date_time": {
+            "date": "2025-07-06",
+            "day": "06",
+            "epoch": "1751837867",
+[WARNING]: Failure using method (v2_runner_on_ok) in callback plugin
+(<ansible.plugins.callback.minimal.CallbackModule object at 0x7faab38dd990>):
+[Errno 32] Broken pipe
+ERROR! Unexpected Exception, this is probably a bug: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/ansible/utils/display.py", line 195, in locking_wrapper
+    return f(*args, **kwargs)
+BrokenPipeError: [Errno 32] Broken pipe
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ file module
+-bash: file: command not found
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test state=touch'
+ubuntu-c | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 1000,
+    "group": "ansible",
+    "mode": "0664",
+    "owner": "ansible",
+    "size": 0,
+    "state": "file",
+    "uid": 1000
+}
+ubuntu1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test state=touch' -o
+ubuntu-c | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 1000,"group": "ansible","mode": "0664","owner": "ansible","size": 0,"state": "file","uid": 1000}
+centos2 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+centos3 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+centos1 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ubuntu1 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ubuntu2 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ubuntu3 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ls -altrh
+total 0
+drwxrwxr-x 1 ansible ansible 4.0K Jun 29 13:19 ..
+-rwxrwxr-x 1 ansible ansible   55 Jun 29 13:19 ansible.cfg
+-rwxrwxr-x 1 ansible ansible  243 Jun 29 13:19 hosts
+drwxrwxr-x 1 ansible ansible 4.0K Jun 29 13:19 .
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ls -altrh /tmp
+total 36K
+drwxr-xr-x 1 root    root    4.0K Jun 29 11:10 ..
+drwxrwxrwt 2 root    root    4.0K Jul  6 20:50 .font-unix
+drwxrwxrwt 2 root    root    4.0K Jul  6 20:50 .XIM-unix
+drwxrwxrwt 2 root    root    4.0K Jul  6 20:50 .X11-unix
+drwxrwxrwt 2 root    root    4.0K Jul  6 20:50 .Test-unix
+drwxrwxrwt 2 root    root    4.0K Jul  6 20:50 .ICE-unix
+drwx------ 3 root    root    4.0K Jul  6 20:50 systemd-private-fdf3ef0b03ec48e4bde8eed8d8f9428e-systemd-resolved.service-dxl4df
+drwx------ 3 root    root    4.0K Jul  6 20:50 systemd-private-fdf3ef0b03ec48e4bde8eed8d8f9428e-systemd-logind.service-YvGwX2
+-rw-rw-r-- 1 ansible ansible    0 Jul  6 21:39 test
+drwxrwxrwt 1 root    root    4.0K Jul  6 21:39 .
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test state=touch' -o
+ubuntu-c | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 1000,"group": "ansible","mode": "0664","owner": "ansible","size": 0,"state": "file","uid": 1000}
+ubuntu1 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+centos2 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+centos1 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+centos3 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ubuntu2 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ubuntu3 | CHANGED => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": true,"dest": "/tmp/test","gid": 0,"group": "root","mode": "0644","owner": "root","size": 0,"state": "file","uid": 0}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test_unix_module state=file mode=600'
+ubuntu-c | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+ubuntu1 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+centos1 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+centos2 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+centos3 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+ubuntu2 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+ubuntu3 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "msg": "file (/tmp/test_unix_module) is absent, cannot continue",
+    "path": "/tmp/test_unix_module",
+    "state": "absent"
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test_unix_module state=touch mode=600'
+ubuntu-c | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 1000,
+    "group": "ansible",
+    "mode": "0600",
+    "owner": "ansible",
+    "size": 0,
+    "state": "file",
+    "uid": 1000
+}
+centos3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_unix_module",
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test_unix_module state=file mode=600'
+ubuntu-c | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 1000,
+    "group": "ansible",
+    "mode": "0600",
+    "owner": "ansible",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 1000
+}
+centos2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ls -alrth /tmp/test
+-rw-rw-r-- 1 ansible ansible 0 Jul  6 21:41 /tmp/test
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ls -alrth /tmp/test_unix_module 
+-rw------- 1 ansible ansible 0 Jul  6 21:43 /tmp/test_unix_module
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test_unix_module state=file mode=600'
+ubuntu-c | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 1000,
+    "group": "ansible",
+    "mode": "0600",
+    "owner": "ansible",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 1000
+}
+ubuntu1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ chmod 644 /tmp/test_unix_module 
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible all -m file -a 'path=/tmp/test_unix_module state=file mode=600'
+ubuntu-c | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "gid": 1000,
+    "group": "ansible",
+    "mode": "0600",
+    "owner": "ansible",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 1000
+}
+centos1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "gid": 0,
+    "group": "root",
+    "mode": "0600",
+    "owner": "root",
+    "path": "/tmp/test_unix_module",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible linux -m file -a 'path=/tmp/test_fetch state=touch mode=666'
+ubuntu1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos1 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+centos2 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ubuntu3 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": true,
+    "dest": "/tmp/test_fetch",
+    "gid": 0,
+    "group": "root",
+    "mode": "0666",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible linux -m file -a 'path=/tmp/test_fetch state=file mode=666' -o
+centos1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+centos2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+centos3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.9"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+ubuntu1 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+ubuntu2 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+ubuntu3 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.10"},"changed": false,"gid": 0,"group": "root","mode": "0666","owner": "root","path": "/tmp/test_fetch","size": 0,"state": "file","uid": 0}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible linux -m fetch -a 'src=/tmp/test_fetch dest=/tmp/test_fetch {ubuntu-c}'
+ERROR! this task 'fetch' has extra params, which is only allowed in the following modules: ansible.builtin.meta, ansible.legacy.include_vars, include_role, add_host, ansible.builtin.import_tasks, ansible.builtin.include_vars, group_by, ansible.legacy.include_tasks, script, raw, ansible.builtin.include_tasks, ansible.legacy.include_role, ansible.windows.win_shell, win_shell, ansible.legacy.raw, ansible.legacy.win_shell, ansible.builtin.win_command, ansible.builtin.set_fact, ansible.legacy.set_fact, ansible.builtin.include_role, shell, ansible.legacy.shell, import_role, ansible.legacy.script, ansible.legacy.command, include_tasks, ansible.legacy.import_tasks, ansible.builtin.command, include, include_vars, ansible.legacy.win_command, meta, ansible.builtin.add_host, command, ansible.builtin.shell, ansible.builtin.raw, ansible.builtin.script, ansible.builtin.include, ansible.legacy.add_host, ansible.windows.win_command, ansible.legacy.group_by, ansible.builtin.import_role, ansible.legacy.import_role, import_tasks, set_fact, win_command, ansible.builtin.win_shell, ansible.builtin.group_by, ansible.legacy.include, ansible.legacy.meta
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible linux -m fetch -a 'src=/tmp/test_fetch dest=/tmp/test_fetch ubuntu-c'
+ERROR! this task 'fetch' has extra params, which is only allowed in the following modules: ansible.legacy.raw, ansible.builtin.win_command, include_tasks, ansible.builtin.include_role, script, ansible.builtin.set_fact, win_command, ansible.builtin.command, ansible.builtin.raw, import_tasks, ansible.legacy.set_fact, ansible.builtin.win_shell, ansible.builtin.script, ansible.legacy.meta, include, ansible.legacy.group_by, ansible.builtin.add_host, ansible.windows.win_shell, ansible.legacy.win_shell, ansible.builtin.import_role, shell, ansible.builtin.meta, ansible.builtin.import_tasks, ansible.legacy.import_role, ansible.legacy.include_vars, ansible.legacy.include, raw, group_by, ansible.legacy.include_role, ansible.builtin.include_tasks, ansible.legacy.import_tasks, ansible.legacy.shell, ansible.legacy.add_host, command, ansible.legacy.script, meta, set_fact, add_host, ansible.legacy.win_command, ansible.builtin.shell, ansible.builtin.group_by, ansible.legacy.command, ansible.builtin.include_vars, include_role, include_vars, ansible.legacy.include_tasks, ansible.builtin.include, import_role, win_shell, ansible.windows.win_command
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible linux -m fetch -a 'src=/tmp/test_fetch dest=/tmp/'
+ubuntu2 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/ubuntu2/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+ubuntu1 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/ubuntu1/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+centos2 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/centos2/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+centos1 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/centos1/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+centos3 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/centos3/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+ubuntu3 | CHANGED => {
+    "changed": true,
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "dest": "/tmp/ubuntu3/tmp/test_fetch",
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e",
+    "remote_checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "remote_md5sum": null
+}
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible-doc
+usage: ansible-doc [-h] [--version] [-v] [-M MODULE_PATH] [--playbook-dir BASEDIR]
+                   [-t {become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars,module,strategy,test,filter,role,keyword}]
+                   [-j] [-r ROLES_PATH]
+                   [-e ENTRY_POINT | -s | -F | -l | --metadata-dump]
+                   [--no-fail-on-errors]
+                   [plugin ...]
+
+plugin documentation tool
+
+positional arguments:
+  plugin                Plugin
+
+options:
+  --metadata-dump       **For internal use only** Dump json metadata for all
+                        entries, ignores other options.
+  --no-fail-on-errors   **For internal use only** Only used for --metadata-dump.
+                        Do not fail on errors. Report the error message in the
+                        JSON instead.
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a
+                        substitute playbook directory. This sets the relative path
+                        for many features including roles/ group_vars/ etc.
+  --version             show program's version number, config file location,
+                        configured module search path, module location, executable
+                        location and exit
+  -F, --list_files      Show plugin names and their source files without summaries
+                        (implies --list). A supplied argument will be used for
+                        filtering, can be a namespace or full collection name.
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default={{ ANSIBLE_HOME ~
+                        "/plugins/modules:/usr/share/ansible/plugins/modules" }}).
+                        This argument may be specified multiple times.
+  -e ENTRY_POINT, --entry-point ENTRY_POINT
+                        Select the entry point for role(s).
+  -h, --help            show this help message and exit
+  -j, --json            Change output into json format.
+  -l, --list            List available plugins. A supplied argument will be used
+                        for filtering, can be a namespace or full collection name.
+  -r ROLES_PATH, --roles-path ROLES_PATH
+                        The path to the directory containing your roles. This
+                        argument may be specified multiple times.
+  -s, --snippet         Show playbook snippet for these plugin types: inventory,
+                        lookup, module
+  -t {become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars,module,strategy,test,filter,role,keyword}, --type {become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars,module,strategy,test,filter,role,keyword}
+                        Choose which plugin type (defaults to "module"). Available
+                        plugin types are : ('become', 'cache', 'callback',
+                        'cliconf', 'connection', 'httpapi', 'inventory', 'lookup',
+                        'netconf', 'shell', 'vars', 'module', 'strategy', 'test',
+                        'filter', 'role', 'keyword')
+  -v, --verbose         Causes Ansible to print more debug messages. Adding
+                        multiple -v will increase the verbosity, the builtin
+                        plugins currently evaluate up to -vvvvvv. A reasonable
+                        level to start is -vvv, connection debugging might require
+                        -vvvv. This argument may be specified multiple times.
+
+See man pages for Ansible CLI options or website for tutorials
+https://docs.ansible.com
+ERROR! Missing name(s), incorrect options passed for detailed documentation.
+ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ ansible-doc file
+> MODULE ansible.builtin.file (/usr/local/lib/python3.10/dist-packages/ansible/modu>
+
+  Set attributes of files, directories, or symlinks and their targets.
+  Alternatively, remove files, symlinks or directories.
+  Many other modules support the same options as the
+  ansible.builtin.file module - including
+  ansible.builtin.copy,
+  ansible.builtin.template, and
+  ansible.builtin.assemble.
+  For Windows targets, use the ansible.windows.win_file
+  module instead.
+
+OPTIONS (red indicates it is required):
+
+   access_time  This parameter indicates the time the file's access time should be
+                set to.
+                Should be `preserve' when no modification is required,
+                `YYYYMMDDHHMM.SS' when using default time
+                format, or `now'.
+                Default is `None' meaning that `preserve' is the
+                default for `state=[file,directory,link,hard]' and
+                `now' is default for `state=touch'.
+        default: null
+        type: str
+
+   access_time_format  When used with `access_time', indicates the time format that>
+                       used.
+                       Based on default Python format (see
+                       time.strftime doc).
+        default: '%Y%m%d%H%M.%S'
+        type: str
+
+   attributes  The attributes the resulting filesystem object should have.
+               To get supported flags look at the man page for
+               chattr on the target system.
+               This string should contain the attributes in the same
+               order as the one displayed by lsattr.
+:ansible@ubuntu-c:~/diveintoansible/Ansible Architecture and Design/Modules$ 
