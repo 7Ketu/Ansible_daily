@@ -1,0 +1,63 @@
+13:43
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			Command module:
+
+				1. We can try touch directly but state=touch command with ansible won't show this warning
+				#ansible all -a 'touch /tmp/test_command_module creates=/tmp/test_command_module'
+
+
+
+				2. to remove:
+
+				#ansible all -a 'rm /tmp/test_command_module removes=test_command_module'
+
+10:47
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			ansible all -m copy -a 'remote_src=yes src=/tmp/x  dest=/tmp/y '
+
+10:14
+
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			because the file was already present in ubuntu-c server, so no change there
+
+8:35
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			we tried changing the test file permission to 644 in Ubuntu-C server, as a result it showed a yellow color while changing the permission of all the servers
+
+7:03
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			ansible all -m file -a 'path=/tmp/test state=file mode=600'
+
+
+
+			state=touch: for creating a new file
+
+			state=file: for an existing file
+
+			Note: if you use state=file for a non existing file, it will fail
+
+
+
+			so if you want to make a new file with permision 600
+
+			you can use:
+
+			#ansible all -m file 'path=/tmp/test_unix state=touch mode=600'
+
+4:14
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			ansible all -m file -a 'path=/tmp/test state=touch'
+
+
+
+2:46
+	3. Ansible Architecture and Design
+		11. Ansible Modules
+			ansible centos -m setup
+
